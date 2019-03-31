@@ -1,8 +1,8 @@
 # ImageKmeans
-基于KMS算法实现图片分类（Python） 
+to cluster the images by k-means algorthm.
 
 
-# 运行
+# run
 ```
 
 pipenv install
@@ -12,8 +12,8 @@ pipenv run ImageKmean.py
 ```
 
 
-# 查看
-在 images目录下查看
+# see
+in the imaages folder
 
 todo:
-使用 scikit-learn 聚类算法替换
+use scikit-learn library cluster api to replace this private implement.
