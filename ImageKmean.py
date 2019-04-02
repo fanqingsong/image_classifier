@@ -158,7 +158,7 @@ class ImagesCluster(object):
 if __name__ == '__main__':
     basedir = os.path.dirname(os.path.abspath(__file__))
     imagedir = os.path.join(basedir, 'images')
-    imageluster = ImagesCluster(imagedir, 4)
+    imageluster = ImagesCluster(imagedir, 2)
     imageluster.cluster()
 
 
