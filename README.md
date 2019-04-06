@@ -21,4 +21,4 @@ pipenv run ImageKmean.py 2
 in the images folder, cluster-x is the result.
 
 # todo:
-use scikit-learn library cluster api to replace this private implement.
+ to explore feature extraction optimization
