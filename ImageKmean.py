@@ -3,9 +3,8 @@ import os
 import shutil
 import numpy as np
 from PIL import Image
-import kmeans
 import sys
-
+from sklearn.cluster import KMeans
 
 class ImagesCluster(object):
     def __init__(self, imagedir, k):
@@ -137,17 +136,21 @@ class ImagesCluster(object):
     def cluster(self):
         self._extractfeature()
 
-        km = kmeans
-
         # 从文件中读取向量数据
         points = self._getdata()
+        print("cluster data:")
         print(points)
 
-        # 数据注入算法，返回图片所归属类别
-        imageMembers = km.k_means(points, self._k)
-        print(imageMembers)
+        model = KMeans(n_clusters=self._k)
+        model.fit(points)
 
-        for idx, m in enumerate(imageMembers):
+        # 分类结果
+        labels = model.predict(points)
+        print("labels:")
+        print(labels)
+
+
+        for idx, m in enumerate(labels):
             # 取所有图片所在路径
             srcdir = self._getimagedir()
 
@@ -162,7 +165,7 @@ class ImagesCluster(object):
             dest = os.path.join(os.path.join(self._imageDir), 'cluster-%d' % m)
             if not os.path.exists(dest):
                 os.makedirs(dest)
-            print(dest)
+            print('dest', dest)
 
             # 将图片拷贝至所属分类对应的文件夹中
             shutil.copy(src, dest)
